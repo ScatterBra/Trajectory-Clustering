@@ -6,7 +6,6 @@ import pandas
 import tensorflow as tf
 from sklearn.cluster import *
 from sklearn import preprocessing
-import termplotlib as tpl
 
 random.seed(2016)
 sampleNum = 10
