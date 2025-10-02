@@ -280,16 +280,14 @@ def vecClusterAnalysis():
         km.fit(trVecs)
         inertias.append(km.inertia_)
     
-    # 2. Plot elbow using termplotlib
+    # 2. Print inertia table
     print("k\tInertia (Sum of squared distances)")
     for k, inertia in zip(k_range, inertias):
         print("%d\t%.4f" % (k, inertia))
     
     # 3. Auto-detect elbow (knee point) by maximum 2nd difference
     inertia_array = np.array(inertias)
-    # First difference
     diff1 = np.diff(inertia_array)
-    # Second difference
     diff2 = np.diff(diff1)
     if len(diff2) > 0:
         elbow_idx = np.argmax(np.abs(diff2)) + min_k + 1  # +1 for diff, +min_k for starting offset
@@ -299,30 +297,15 @@ def vecClusterAnalysis():
     
     print("Auto-detected best cluster number (elbow): %d" % best_k)
     
-    # 4. Final clustering and output (as before)
+    # 4. Final clustering, print clusters and their members
     km = KMeans(n_clusters=best_k, random_state=2016)
     clusters = km.fit_predict(trVecs)
     
-    # The original code assumed 3 groups, each sampleNum
-    sampleNum = 10
-    all = 0.
-    N = len(trVecs)
-    group_count = N // sampleNum
-    for group_idx in range(group_count):
-        item = set(clusters[group_idx*sampleNum : (group_idx+1)*sampleNum])
-        l = []
-        for i in item:
-            l.append([i, clusters[group_idx*sampleNum : (group_idx+1)*sampleNum].tolist().count(i)])
-        group_name = ['Straight', 'Circling', 'bending']
-        if group_idx < len(group_name):
-            print group_name[group_idx] + ':  ' + str(l)
-        else:
-            print 'Group%d:  %s' % (group_idx, str(l))
-        m = max([te[1] for te in l])
-        all = all + m
-        print float(m) / sampleNum
-    print 'overall'
-    print all / (sampleNum * group_count)
+    cluster_dict = {}
+    for idx, label in enumerate(clusters):
+        cluster_dict.setdefault(label, []).append(idx)
+    for group_label in sorted(cluster_dict.keys()):
+        print("Group%d: %s" % (group_label, cluster_dict[group_label]))
     print '---------------------------------'
 
 
