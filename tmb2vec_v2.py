@@ -6,7 +6,7 @@ import pandas
 import tensorflow as tf
 from sklearn.cluster import *
 from sklearn import preprocessing
-import matplotlib.pyplot as plt
+import plotext as plt
 
 random.seed(2016)
 sampleNum = 10
@@ -282,13 +282,11 @@ def vecClusterAnalysis():
         inertias.append(km.inertia_)
     
     # 2. Plot elbow
-    plt.figure()
-    plt.plot(k_range, inertias, 'bx-')
-    plt.xlabel('Number of clusters k')
-    plt.ylabel('Inertia (Sum of squared distances)')
-    plt.title('Elbow Method For Optimal k')
-    plt.savefig("elbow_plot.png")
-    print("Elbow plot saved as elbow_plot.png. Please check manually.")
+    plt.plot(k_range, inertias, marker='x')
+    plt.title("Elbow Method For Optimal k")
+    plt.xlabel("Number of clusters k")
+    plt.ylabel("Inertia (Sum of squared distances)")
+    plt.show()
     
     # 3. Auto-detect elbow (knee point) by maximum 2nd difference
     inertia_array = np.array(inertias)
