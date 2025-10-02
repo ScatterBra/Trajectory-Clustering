@@ -282,11 +282,9 @@ def vecClusterAnalysis():
         inertias.append(km.inertia_)
     
     # 2. Plot elbow using termplotlib
-    x = np.array(k_range)
-    y = np.array(inertias)
-    fig = tpl.figure()
-    fig.plot(x, y, width=60, height=20, xlabel="Number of clusters k", ylabel="Inertia (Sum of squared distances)", label="Inertia")
-    fig.show()
+    print("k\tInertia (Sum of squared distances)")
+    for k, inertia in zip(k_range, inertias):
+        print("%d\t%.4f" % (k, inertia))
     
     # 3. Auto-detect elbow (knee point) by maximum 2nd difference
     inertia_array = np.array(inertias)
