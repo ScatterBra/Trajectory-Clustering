@@ -269,6 +269,10 @@ def vecClusterAnalysis():
     for tr in trs:
         trVecs.append(tr[0][0])
     trVecs = np.array(trVecs)
+
+    with open('data/trVecs_500.pkl', 'wb') as f:
+        cPickle.dump(trVecs, f)
+
     
     # 1. Elbow method: try different k, record inertia
     max_k = min(30, len(trVecs))  # up to 30 clusters or number of samples
