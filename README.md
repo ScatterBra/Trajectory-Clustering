@@ -1,5 +1,5 @@
-# traj2vec-test
-![Example](images/s1.png)
-![Example](images/s2.png)
-![Example](images/Figure_2.png)
-![Example](images/Figure_3.png)
+# Trajectory (100 samples)
+![100](images/s1.png)
+![100](images/s2.png)
+![100](images/Figure_2.png)
+![100](images/Figure_3.png)
