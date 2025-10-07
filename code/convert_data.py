@@ -2,8 +2,8 @@
 import cPickle
 import ast
 
-input_file = 'data/original_data_500.csv'
-output_file = 'data/trajectories_500.pkl'
+input_file = 'data/original_data_1000.csv'
+output_file = 'data/trajectories_1000.pkl'
 
 all_trajs = []
 with open(input_file, 'r') as f:
