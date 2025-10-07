@@ -2,8 +2,8 @@
 import cPickle
 import ast
 
-input_file = 'cleaned_minimized_data.csv'
-output_file = 'sim_trajectories_from_cleaned.pkl'
+input_file = 'data/cleaned_data_200.csv'
+output_file = 'data/trajectories_200.pkl'
 
 all_trajs = []
 with open(input_file, 'r') as f:
