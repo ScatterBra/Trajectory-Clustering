@@ -2,7 +2,7 @@
 import cPickle
 import ast
 
-input_file = 'data/cleaned_data_200.csv'
+input_file = 'data/original_data_200.csv'
 output_file = 'data/trajectories_200.pkl'
 
 all_trajs = []
