@@ -235,7 +235,7 @@ def trajectory2Vec():
             input_len = len(input_data)
             print input_len
 
-            # 跳过窗口数超过18的轨迹
+            # Skip trajectory with more than 18 windows
             if len(input_data) > 18:
                 print('Skip trajectory %d: window count = %d' % (j, len(input_data)))
                 skipped_indices.append(j)
@@ -268,7 +268,7 @@ def trajectory2Vec():
             print("Optimization Finished!")
             j = j + 1
 
-        # 打印所有被跳过的轨迹编号
+        # Print all skipped trajectories numbers
         if skipped_indices:
             print("The following trajectories were skipped due to window count > 18:")
             print(skipped_indices)
