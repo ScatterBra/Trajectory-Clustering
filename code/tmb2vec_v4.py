@@ -227,7 +227,7 @@ def trajectory2Vec():
         # Training cycle
         input_datas = cPickle.load(open('sim_normal_behavior_sequences'))
         trajectoryVecs = []
-        skipped_indices = []   # 记录被跳过的轨迹编号
+        skipped_indices = []
         j = 0
         for input_data in input_datas:
             print 'Sample:'
