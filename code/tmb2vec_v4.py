@@ -226,13 +226,22 @@ def trajectory2Vec():
         sess.run(init)
         # Training cycle
         input_datas = cPickle.load(open('sim_normal_behavior_sequences'))
-        trajectoryVecs = []
+                trajectoryVecs = []
+        skipped_indices = []   # 记录被跳过的轨迹编号
         j = 0
         for input_data in input_datas:
             print 'Sample:'
             print j
             input_len = len(input_data)
             print input_len
+
+            # 跳过窗口数超过18的轨迹
+            if len(input_data) > 18:
+                print('Skip trajectory %d: window count = %d' % (j, len(input_data)))
+                skipped_indices.append(j)
+                j = j + 1
+                continue
+
             defalt = []
             for i in range(0, frame_dim):
                 defalt.append(0)
@@ -258,6 +267,11 @@ def trajectory2Vec():
             trajectoryVecs.append(embedding)
             print("Optimization Finished!")
             j = j + 1
+
+        # 打印所有被跳过的轨迹编号
+        if skipped_indices:
+            print("The following trajectories were skipped due to window count > 18:")
+            print(skipped_indices)
         fout = file('sim_traj_vec_normal_reverse', 'w')
         cPickle.dump(trajectoryVecs, fout)
 
