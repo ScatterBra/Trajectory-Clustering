@@ -13,7 +13,7 @@ sampleNum = 10
 def completeTrajectories():
     ################################################################
     # simTrjss = cPickle.load(open('./simulated_data/sim_trajectories'))
-    simTrjss = cPickle.load(open('data/trajectories_999.pkl', 'rb'))
+    simTrjss = cPickle.load(open('data/trajectories_100.pkl', 'rb'))
     simTrjComps = []
     for simTrjs in simTrjss:
         trjsCom = []
@@ -284,8 +284,8 @@ def vecClusterAnalysis():
         trVecs.append(tr[0][0])
     trVecs = np.array(trVecs)
 
-    with open('data/trVecs_999.pkl', 'wb') as f:
-        cPickle.dump(trVecs, f)
+    #with open('data/trVecs_999.pkl', 'wb') as f:
+        #cPickle.dump(trVecs, f)
 
     
     # 1. Elbow method: try different k, record inertia
